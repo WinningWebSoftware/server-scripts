@@ -9,7 +9,7 @@ A collection of useful scripts to help ease server setup.
 ### - `init.sh`
 
 ```
-wget -O https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/init.sh danny | bash -s <username>
+curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/init.sh | bash -s -- <username>
 ``` 
 
 
