@@ -7,4 +7,4 @@ sudo apt-get install jenkins -y
 sudo ufw allow 8080
 
 echo -e "Jenkins installed and available on port 8080. Initial admin password:"
-cat /var/lib/jenkins/secrets/initialAdminPassword
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
