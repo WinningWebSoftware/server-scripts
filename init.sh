@@ -21,4 +21,4 @@ sudo ufw --force enable
 echo -e "Allowing OpenSSH"
 ufw allow OpenSSH
 
-echo "User created, please exit your server and connect again with $1"
+echo -e "User created, please exit your server and connect again with $1"
