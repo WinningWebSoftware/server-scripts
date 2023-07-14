@@ -21,4 +21,6 @@ sudo ufw --force enable
 echo -e "Allowing OpenSSH"
 ufw allow OpenSSH
 
+echo "$1 ALL=(ALL) NOPASSWD: ALL" | sudo EDITOR="tee -a" visudo
+
 echo -e "User created, please exit your server and connect again with $1"
