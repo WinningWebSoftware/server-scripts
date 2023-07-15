@@ -26,7 +26,7 @@ echo -e "Allowing Nginx through the firewall\n"
 sudo ufw allow 'Nginx Full'
 
 echo -e "Fetching server config file\n"
-curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/jenkins.conf > /etc/nginx/sites-available/"$1"
+sudo bash -c "curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/jenkins.conf > /etc/nginx/sites-available/$1"
 sudo sed "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
 
 sudo mkdir -p /var/www/"$1"/html
