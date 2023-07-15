@@ -27,7 +27,7 @@ sudo ufw allow 'Nginx Full'
 
 echo -e "Fetching server config file\n"
 curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/jenkins.conf > /etc/nginx/sites-available/"$1"
-sed "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
+sudo sed "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
 
 sudo mkdir -p /var/www/"$1"/html
 sudo chown -R $USER:$USER /var/www/"$1"/html
@@ -36,9 +36,7 @@ sudo chmod -R 755 /var/www/"$1"
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 sudo unlink /etc/nginx/sites-enabled/default
 
-sudo systemctl reload nginx
-
-sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1/" /etc/default/jenkins
+sudo sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1/" /etc/default/jenkins
 
 sudo snap install core
 sudo snap refresh core
