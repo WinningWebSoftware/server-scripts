@@ -36,7 +36,7 @@ sudo chmod -R 755 /var/www/"$1"
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 sudo unlink /etc/nginx/sites-enabled/default
 
-sudo sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1/" /etc/default/jenkins
+sudo sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME\/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME\/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1/" /etc/default/jenkins
 
 sudo snap install core
 sudo snap refresh core
