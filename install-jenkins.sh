@@ -32,21 +32,19 @@ sed "s/domain.com/$1" /etc/nginx/sites-available/"$1"
 sudo mkdir -p /var/www/"$1"/html
 sudo chown -R $USER:$USER /var/www/"$1"/html
 sudo chmod -R 755 /var/www/"$1"
+
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 sudo unlink /etc/nginx/sites-enabled/default
+
 sudo systemctl reload nginx
+
 sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1" /etc/default/jenkins
 
 sudo snap install core
 sudo snap refresh core
-
 sudo snap install --classic --non-interactive --agree-tos -m "$2" certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-
 sudo certbot --nginx -d "$1"
 
-# install nginx
-# enable Nginx Full
-# create server config file ->
 echo -e "Jenkins installed and available on port 8080. Initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
