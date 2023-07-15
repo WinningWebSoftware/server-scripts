@@ -20,7 +20,7 @@ sudo apt-get install jenkins -y
 sudo ufw allow 8080
 
 echo -e "Installing Nginx\n"
-sudo apt install nginx
+sudo apt install nginx -y
 
 echo -e "Allowing Nginx through the firewall\n"
 sudo ufw allow 'Nginx Full'
