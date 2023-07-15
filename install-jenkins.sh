@@ -44,5 +44,7 @@ sudo snap install --classic --non-interactive --agree-tos -m "$2" certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot --nginx -d "$1"
 
+sudo systemctl reload nginx
+
 echo -e "Jenkins installed and available on port 8080. Initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
