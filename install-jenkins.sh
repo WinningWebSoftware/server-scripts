@@ -40,9 +40,9 @@ sudo sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME/war --httpPort=\$HTTP_
 
 sudo snap install core
 sudo snap refresh core
-sudo snap install --classic --non-interactive --agree-tos -m "$2" certbot
+sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
-sudo certbot --nginx -d "$1"
+sudo certbot --non-interactive --agree-tos -m "$2" --nginx -d "$1"
 
 sudo systemctl reload nginx
 
