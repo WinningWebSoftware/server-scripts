@@ -27,7 +27,7 @@ sudo snap install --classic certbot
 sudo ln -s /snap/bin/certbot /usr/bin/certbot
 sudo certbot --nginx --non-interactive -m "$2" -d "$1"
 
-sudo apt install mysql-server -y
+sudo apt -f install mysql-server -y
 
 mysql_root_password=$(openssl rand -base64 12)
 mysql_user_password=$(openssl rand -base64 12)
@@ -38,7 +38,7 @@ sudo mysql_secure_installation
 sudo ufw allow from remote_ip_address to any port 3306
 
 ssh-keygen
-sudo apt install git composer nodejs npm php-curl php-gd -y
+sudo apt -f install git composer nodejs npm php-curl php-gd -y
 sudo npm cache clean -f
 sudo npm install -g n -y
 sudo n stable
