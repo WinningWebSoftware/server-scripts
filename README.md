@@ -22,12 +22,14 @@ Run this when first connecting to your server as the **root** user. This script:
 ### - `install-jenkins.sh`
 
 ```
-curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/install-jenkins.sh | bash
+curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/install-jenkins.sh | bash -s -- <domainName> <emailAddress>
 ```
 
-Primary aim as the name suggests is to install Jenkins. This script:
+Primary aim as the name suggests is to install Jenkins. Before running this script make sure that your domain name is pointed to 
+your server and has fully propagated, or you may encounter errors attempting to install your SSL certificate. This script:
 
 - Installs the Java Runtime Environment and Java Dev Kit
 - Installs Jenkins
-- Opens port 8080 so you can connect to &lt;your domain or ip&gt;:8080
-- Displays your admin password so you don't need to go looking for it
+- Installs Nginx
+- Sets up a reverse proxy and installs an SSL certificate for your domain
+- When done, displays your admin password and a link to your Jenkins setup

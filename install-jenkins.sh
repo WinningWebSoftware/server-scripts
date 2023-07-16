@@ -27,7 +27,7 @@ sudo ufw allow 'Nginx Full'
 
 echo -e "Fetching server config file\n"
 sudo bash -c "curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/jenkins.conf > /etc/nginx/sites-available/$1"
-sudo sed "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
+sudo sed -i "s/domain.com/$1/" /etc/nginx/sites-available/"$1"
 
 sudo mkdir -p /var/www/"$1"/html
 sudo chown -R $USER:$USER /var/www/"$1"/html
@@ -36,7 +36,7 @@ sudo chmod -R 755 /var/www/"$1"
 sudo ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/
 sudo unlink /etc/nginx/sites-enabled/default
 
-sudo sed "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME\/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME\/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1/" /etc/default/jenkins
+sudo sed -i "s/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME\/war --httpPort=\$HTTP_PORT/JENKINS_ARGS=\"--webroot=\/var\/cache\/\$NAME\/war --httpPort=\$HTTP_PORT --httpListenAddress=127.0.0.1/" /etc/default/jenkins
 
 sudo snap install core
 sudo snap refresh core
@@ -46,5 +46,5 @@ sudo certbot --non-interactive --agree-tos -m "$2" --nginx -d "$1"
 
 sudo systemctl reload nginx
 
-echo -e "Jenkins installed and available on port 8080. Initial admin password:"
+echo -e "Jenkins installed and available at https://$1. Initial admin password:"
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
