@@ -16,8 +16,6 @@ sudo ln -s /etc/nginx/sites-available/"$1" /etx/nginx/sites-enabled/
 
 sudo unlink /etc/nginx/sites-enabled/default
 
-sudo systemctl reload nginx
-
 sudo chown -R $USER:$USER /var/www
 sudo mkdir -p /var/www/"$1"/public
 
@@ -37,7 +35,6 @@ mysql -u "root" "-p" -Bse "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_n
 
 sudo sed -i "s/bind-address/#bind-address/" /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo mysql_secure_installation
-sudo systemctl restart mysql
 sudo ufw allow from remote_ip_address to any port 3306
 
 ssh-keygen
