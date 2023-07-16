@@ -6,7 +6,7 @@ then
 fi
 
 sudo apt update
-sudo apt install nginx php8.1-fpm php-cli unzip
+sudo apt install nginx php8.1-fpm php-cli unzip -y
 sudo ufw allow 'Nginx Full'
 
 sudo bash -c "curl https://raw.githubusercontent.com/WinningWebSoftware/server-scripts/main/webserver.conf > /etc/nginx/sites-available/$1"
